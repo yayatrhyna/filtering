@@ -1,0 +1,36 @@
+# apr/19/2024 10:41:35 by RouterOS 6.49.7
+# software id = 797P-N0UR
+#
+# model = CCR1036-8G-2S+
+# serial number = D83A0FB4A81F
+/routing filter
+add action=accept chain=FS-IPT-OUT prefix=103.165.86.0/24
+add action=accept chain=FS-IPT-OUT prefix=103.155.221.0/24 set-bgp-prepend=4
+add action=discard chain=FS-IPT-OUT
+add action=discard chain=FS-IPT-IN prefix=119.15.135.0/24
+add action=accept chain=FS-IPT-IN disabled=yes prefix=8.8.0.0/16 prefix-length=\
+    24
+add action=accept chain=FS-IPT-IN set-bgp-local-pref=100
+add action=accept chain=FS-IPT-V6-OUT prefix=2001:df4:db80::/48 prefix-length=\
+    48-127
+add action=discard chain=FS-IPT-V6-OUT
+add action=accept bgp-as-path="136106+\$" chain=FS-IPT-V6-IN disabled=yes
+add action=accept chain=FS-IPT-V6-IN
+add action=accept bgp-as-path="136106_[0-9]*+\$" chain=FS-IPT-V6-IN disabled=\
+    yes
+add action=discard chain=FS-IPT-V6-IN
+add action=accept chain=BGP-KRW-OUT prefix=103.165.86.0/24
+add action=accept bgp-as-path="136106+\$" chain=BGP-KRW-OUT
+add action=accept bgp-as-path=136106_15169 chain=BGP-KRW-OUT
+add action=discard chain=BGP-KRW-OUT
+add action=accept chain=BGP-KRW-IN prefix=103.155.221.0/24
+add action=accept chain=BGP-KRW-IN disabled=yes prefix=8.8.0.0/16 \
+    prefix-length=23-24
+add action=accept bgp-as-path="45306_2914+\$" chain=BGP-KRW-IN disabled=yes
+add action=accept bgp-as-path="45306_23947+\$" chain=BGP-KRW-IN disabled=yes
+add action=discard chain=BGP-KRW-IN
+add action=discard chain=Discard
+add action=accept chain=CORE-KRW-IN prefix=103.165.86.0/24
+add action=accept chain=CORE-KRW-IN prefix=103.155.221.0/24
+add action=discard chain=CORE-KRW-IN
+[yayat@RO.CORE-INTL-KRW] > 

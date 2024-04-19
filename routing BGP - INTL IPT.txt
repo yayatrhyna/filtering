@@ -1,0 +1,14 @@
+# apr/19/2024 10:42:14 by RouterOS 6.49.7
+# software id = 797P-N0UR
+#
+# model = CCR1036-8G-2S+
+# serial number = D83A0FB4A81F
+/routing bgp peer
+add in-filter=FS-IPT-IN instance=RO.INTL-KRW name=Peer-FS-IPT out-filter=FS-IPT-OUT \
+    remote-address=103.87.185.24 remote-as=136106
+add address-families=ipv6 in-filter=FS-IPT-V6-IN instance=RO.INTL-KRW name=Peer-FS-IPT-V6 \
+    out-filter=FS-IPT-V6-OUT remote-address=2400:d740::103:87:185:24 remote-as=136106
+add in-filter=BGP-KRW-IN instance=RO.INTL-KRW name=Peer-KRW-CYBER nexthop-choice=force-self \
+    out-filter=BGP-KRW-OUT remote-address=103.155.221.5 remote-as=141076 route-reflect=yes
+add in-filter=CORE-KRW-IN instance=RO.INTL-KRW name=Peer-LOKAL-KRW nexthop-choice=force-self \
+    out-filter=Discard remote-address=103.165.86.13 remote-as=141076

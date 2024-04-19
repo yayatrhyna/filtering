@@ -1,0 +1,104 @@
+# apr/19/2024 10:36:35 by RouterOS 6.48.6
+# software id = TDWN-RJDR
+#
+# model = CCR1009-7G-1C-1S+
+# serial number = E3200FEAAC78
+/routing filter
+add action=accept chain=LOKAL-OUT prefix=103.155.221.0/24 set-bgp-communities=\
+    1410:76
+add action=accept chain=LOKAL-OUT disabled=yes prefix=103.165.86.0/24
+add action=discard chain=LOKAL-OUT
+add action=accept chain=LOKAL-IN disabled=yes prefix=202.75.96.0/20 \
+    prefix-length=24 set-bgp-local-pref=400
+add action=accept bgp-as-path=24535_ chain=LOKAL-IN disabled=yes
+add action=discard bgp-as-path=45306_131702 chain=LOKAL-IN disabled=yes
+add action=accept chain=LOKAL-IN
+add action=discard bgp-as-path="45710\$" chain=NVZ-IX_IN
+add action=discard bgp-as-path="141076\$" chain=NVZ-IX_IN
+add action=discard bgp-as-path=20940_ chain=NVZ-IX_IN
+add action=discard bgp-as-path=139190_ chain=NVZ-IX_IN disabled=yes
+add action=discard bgp-as-path=45306_131702 chain=NVZ-IX_IN
+add action=discard bgp-as-path=45102_ chain=NVZ-IX_IN
+add action=discard bgp-as-path=19551_ chain=NVZ-IX_IN
+add action=discard bgp-as-path=16509_ chain=NVZ-IX_IN
+add action=accept chain=NVZ-IX_IN disabled=yes prefix=103.30.90.0/24 \
+    set-bgp-local-pref=350
+add action=accept chain=NVZ-IX_IN disabled=yes prefix=203.128.83.0/24 \
+    set-bgp-local-pref=350
+add action=accept chain=NVZ-IX_IN
+add action=accept chain=NVZ-IX_OUT prefix=103.155.221.0/24 set-bgp-prepend=5
+add action=accept chain=NVZ-IX_OUT prefix=103.165.86.0/24 set-bgp-prepend=5
+add action=discard chain=NVZ-IX_OUT
+add action=accept chain=KRW-IN prefix=103.165.86.0/24 prefix-length=24
+add action=discard chain=KRW-IN
+add action=discard chain=KRW-OUT prefix=103.165.86.0/24
+add action=accept chain=KRW-OUT prefix=103.155.221.0/24
+add action=accept chain=KRW-OUT
+add action=discard chain=IIX-IN prefix=0.0.0.0/0 prefix-length=0 \
+    set-bgp-local-pref=350
+add action=discard chain=IIX-IN prefix=8.8.8.0/24 set-bgp-local-pref=350
+add action=discard chain=IIX-IN prefix=8.8.4.0/24 set-bgp-local-pref=350
+add action=discard bgp-as-path="15133+\$" chain=IIX-IN set-bgp-local-pref=50
+add action=accept bgp-as-path="396986+\$" chain=IIX-IN set-bgp-local-pref=350
+add action=accept chain=IIX-IN set-bgp-local-pref=300
+add action=accept chain=IIX-OUT prefix=103.155.221.0/24 prefix-length=24
+add action=accept chain=IIX-OUT prefix=103.165.86.0/24
+add action=discard chain=IIX-OUT
+add action=accept bgp-as-path="7597\$" chain=IIX-v6-IN disabled=yes
+add action=accept chain=IIX-v6-IN set-bgp-local-pref=350
+add action=accept chain=IIX-v6-OUT prefix=2001:df4:db80::/48 prefix-length=\
+    48-128
+add action=discard chain=IIX-v6-OUT
+add action=discard chain=Discard
+add action=accept chain=Internal_OUT prefix=103.155.221.0/24 prefix-length=24 \
+    set-bgp-local-pref=250
+add action=accept chain=Internal_OUT prefix=103.165.86.0/24 prefix-length=24
+add action=discard chain=Internal_OUT
+add action=accept chain=JKTIX-OUT prefix=103.155.221.0/24
+add action=accept chain=JKTIX-OUT prefix=103.165.86.0/24
+add action=discard chain=JKTIX-OUT
+add action=accept bgp-as-path=24211 chain=JKT_IX-IN disabled=yes \
+    set-bgp-local-pref=350
+add action=accept chain=JKTIX-v6-OUT prefix=2001:df4:db80::/48
+add action=accept chain=Bilateral-OUT-v6 prefix=2001:df4:db80::/48 \
+    prefix-length=48-128
+add action=discard chain=JKTIX-v6-OUT
+add action=accept chain=JKTIX-v6-IN
+add action=accept chain=OIXP-OUT prefix=103.155.221.0/24
+add action=accept chain=OIXP-OUT prefix=103.165.86.0/24
+add action=discard chain=OIXP-OUT
+add action=accept chain=CDIX-OUT prefix=103.155.221.0/24
+add action=accept chain=CDIX-OUT prefix=103.165.86.0/24 set-bgp-prepend=3
+add action=discard chain=CDIX-OUT
+add action=discard chain=OIXP-IN prefix=0.0.0.0/0 prefix-length=0 \
+    set-bgp-local-pref=350
+add action=discard chain=OIXP-IN prefix=8.8.8.0/24 set-bgp-local-pref=350
+add action=discard chain=OIXP-IN prefix=8.8.4.0/24 set-bgp-local-pref=350
+add action=discard bgp-as-path="15133+\$" chain=OIXP-IN set-bgp-local-pref=50
+add action=accept bgp-as-path=24211 chain=OIXP-IN set-bgp-local-pref=350
+add action=accept bgp-as-path=133800 chain=OIXP-IN set-bgp-local-pref=400
+add action=accept chain=OIXP-IN prefix=150.107.140.0/24 set-bgp-local-pref=400
+add action=accept chain=OIXP-IN prefix=202.6.208.0/24 set-bgp-local-pref=400
+add action=accept chain=OIXP-IN prefix=114.5.48.0/24 set-bgp-local-pref=400
+add action=accept chain=OIXP-IN set-bgp-local-pref=300
+add action=accept chain=Bilateral-OUT prefix=103.155.221.0/24
+add action=accept chain=Bilateral-OUT prefix=103.165.86.0/24
+add action=discard chain=Bilateral-OUT
+add action=accept chain=Bilateral-IN set-bgp-local-pref=350
+add action=discard chain=Bilateral-OUT-v6
+add action=accept chain=Bilateral-IN-v6 set-bgp-local-pref=300
+add action=accept bgp-as-path=20940 chain=JKT_IX-IN disabled=yes \
+    set-bgp-local-pref=350
+add action=accept chain=JKT_IX-IN prefix=103.73.72.0/22 prefix-length=22-24 \
+    set-bgp-local-pref=400
+add action=accept chain=JKT_IX-IN set-bgp-local-pref=250
+add action=discard chain=CDIX-IN prefix=0.0.0.0/0 prefix-length=0 \
+    set-bgp-local-pref=350
+add action=discard chain=CDIX-IN prefix=8.8.8.0/24 set-bgp-local-pref=350
+add action=discard bgp-as-path="15133+\$" chain=CDIX-IN
+add action=accept chain=CDIX-IN set-bgp-local-pref=250
+add action=accept chain=KRW-v6-IN prefix-length=64
+add action=discard chain=KRW-v6-IN disabled=yes
+add action=accept chain=KRW-v6-OUT
+add action=discard chain=KRW-v6-OUT disabled=yes prefix=2001:df4:db80:67::/64
+[yayat@RO.LOCAL-IIX] > 

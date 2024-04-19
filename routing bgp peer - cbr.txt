@@ -1,0 +1,117 @@
+[yayat@RO.LOCAL-IIX] > routing bgp peer ex
+# apr/19/2024 10:38:19 by RouterOS 6.48.6
+# software id = TDWN-RJDR
+#
+# model = CCR1009-7G-1C-1S+
+# serial number = E3200FEAAC78
+/routing bgp peer
+add disabled=yes in-filter=LOKAL-IN instance=AMC name=Peer-Lokal_ywk \
+    out-filter=LOKAL-OUT remote-address=103.155.221.230 remote-as=45710
+add disabled=yes in-filter=NVZ-IX_IN instance=AMC name=Peer-NVZ_IX out-filter=\
+    NVZ-IX_OUT remote-address=103.23.241.1 remote-as=132665
+add in-filter=KRW-IN instance=AMC name=peer-KRW nexthop-choice=force-self \
+    out-filter=KRW-OUT remote-address=103.155.221.234 remote-as=141076 \
+    update-source=Loopback
+add disabled=yes in-filter=IIX-IN instance=AMC name=Peer-IIX-RS2-OLD \
+    out-filter=IIX-OUT remote-address=103.28.75.222 remote-as=7597 \
+    remove-private-as=yes
+add address-families=ipv6 disabled=yes in-filter=IIX-v6-IN instance=AMC name=\
+    Peer-IIX-RS2-v6 out-filter=IIX-v6-OUT remote-address=2001:7fa:2::7597:4 \
+    remote-as=7597
+add in-filter=Discard instance=AMC name=Peer-Internal nexthop-choice=force-self \
+    out-filter=Internal_OUT remote-address=103.155.221.1 remote-as=141076 \
+    route-reflect=yes
+add hold-time=4m in-filter=JKT_IX-IN instance=AMC keepalive-time=1m name=\
+    Peer-JKT-IX out-filter=JKTIX-OUT remote-address=119.11.184.101 remote-as=\
+    137295
+add hold-time=4m in-filter=JKT_IX-IN instance=AMC keepalive-time=1m name=\
+    Peer-JKT-IX-2 out-filter=JKTIX-OUT remote-address=119.11.184.102 remote-as=\
+    137295
+add address-families=ipv6 disabled=yes hold-time=4m in-filter=JKTIX-v6-IN \
+    instance=AMC keepalive-time=1m name=Peer-JKTIX-v6 out-filter=JKTIX-v6-OUT \
+    remote-address=2404:c8:0:a:0:13:7295:1 remote-as=137295
+add address-families=ipv6 disabled=yes in-filter=JKTIX-v6-IN instance=AMC name=\
+    Peer-JKTIX-2-v6 out-filter=JKTIX-v6-OUT remote-address=\
+    2404:c8:0:a:0:13:7295:2 remote-as=137295
+add in-filter=OIXP-IN instance=AMC name=Peer-OIXP out-filter=OIXP-OUT \
+    remote-address=43.252.146.1 remote-as=7717
+add in-filter=Bilateral-IN instance=AMC name=Peer-AWS-JKTIX out-filter=\
+    Bilateral-OUT remote-address=119.11.185.61 remote-as=16509
+add in-filter=Bilateral-IN instance=AMC name=Peer-AWS#2-JKTIX out-filter=\
+    Bilateral-OUT remote-address=119.11.184.88 remote-as=16509
+add disabled=yes in-filter=Bilateral-IN instance=AMC name=Peer-AWS-IIX \
+    out-filter=Bilateral-OUT remote-address=123.108.9.180 remote-as=16509
+add address-families=ipv6 in-filter=Discard instance=AMC name=Peer-AWS-JKTIX-v6 \
+    out-filter=Discard remote-address=2404:c8:0:a:0:1:6509:1 remote-as=16509
+add address-families=ipv6 in-filter=Bilateral-IN-v6 instance=AMC name=\
+    Peer-AWS-IIX-V6 out-filter=Bilateral-OUT-v6 passive=yes remote-address=\
+    2001:7fa:2::d5 remote-as=16509
+add address-families=ipv6 in-filter=Bilateral-IN-v6 instance=AMC name=\
+    Peer-AWS-JKTIX-v6-2 out-filter=Bilateral-OUT-v6 remote-address=\
+    2404:c8:0:a:0:1:6509:2 remote-as=16509
+add disabled=yes in-filter=Bilateral-IN instance=AMC name=Peer-Cato out-filter=\
+    Bilateral-OUT remote-address=119.11.184.121 remote-as=13150
+add in-filter=Discard instance=AMC name=Peer-AWS-IIX-#1 out-filter=Discard \
+    remote-address=123.108.9.182 remote-as=16509
+add address-families=ipv6 disabled=yes in-filter=Bilateral-IN-v6 instance=AMC \
+    name=Peer-AWS-IIX-V6-#1 out-filter=Bilateral-OUT-v6 remote-address=\
+    2001:7fa:2::d8 remote-as=16509
+add in-filter=IIX-IN instance=AMC name=Peer-IIX-RS1 out-filter=IIX-OUT \
+    remote-address=123.108.8.111 remote-as=7597
+add in-filter=IIX-IN instance=AMC name=Peer-IIX-RS2 out-filter=IIX-OUT \
+    remote-address=123.108.9.111 remote-as=7597
+add address-families=ipv6 in-filter=IIX-v6-IN instance=AMC name=Peer-IIX-RS1-v6 \
+    out-filter=IIX-v6-OUT remote-address=2001:7fa:2:5:7597::111 remote-as=7597
+add in-filter=Bilateral-IN instance=AMC name=Peer-FB1-IIX out-filter=\
+    Bilateral-OUT remote-address=123.108.9.129 remote-as=32934
+add in-filter=Bilateral-IN instance=AMC name=Peer-FB2-IIX out-filter=\
+    Bilateral-OUT remote-address=123.108.9.130 remote-as=32934
+add in-filter=Bilateral-IN instance=AMC name=Peer-FB1-JKTIX out-filter=\
+    Bilateral-OUT remote-address=119.11.184.24 remote-as=32934
+add in-filter=Bilateral-IN instance=AMC name=Peer-FB2-JKTIX out-filter=\
+    Bilateral-OUT remote-address=119.11.184.23 remote-as=32934
+add address-families=ipv6 in-filter=Bilateral-IN-v6 instance=AMC name=\
+    Peer-FB1-IIX-v6 out-filter=Bilateral-OUT-v6 remote-address=\
+    2001:7fa:2:5::181 remote-as=32934
+add address-families=ipv6 in-filter=Bilateral-IN-v6 instance=AMC name=\
+    Peer-FB2-IIX-v6 out-filter=Bilateral-OUT-v6 remote-address=\
+    2001:7fa:2:5::182 remote-as=32934
+add address-families=ipv6 in-filter=Bilateral-IN-v6 instance=AMC name=\
+    Peer-FB1-JKTIX-v6 out-filter=Bilateral-OUT-v6 remote-address=\
+    2404:c8:0:a:0:3:2934:2 remote-as=32934
+add address-families=ipv6 in-filter=Bilateral-IN-v6 instance=AMC name=\
+    Peer-FB2-JKTIX-v6 out-filter=Bilateral-OUT-v6 remote-address=\
+    2404:c8:0:a:0:3:2934:1 remote-as=32934
+add in-filter=Bilateral-IN instance=AMC name=Peer-Cloudflare-Jktix out-filter=\
+    Bilateral-OUT remote-address=119.11.184.14 remote-as=13335 \
+    remove-private-as=yes
+add address-families=ipv6 disabled=yes in-filter=Bilateral-IN-v6 instance=AMC \
+    name=Peer-Clodflare-Jktix-v6 out-filter=Bilateral-OUT-v6 remote-address=\
+    2404:c8:0:a:0:1:3335:1 remote-as=13335 remove-private-as=yes
+add in-filter=CDIX-IN instance=AMC name=Peer-CDIX out-filter=CDIX-OUT \
+    remote-address=103.30.172.128 remote-as=9448
+add in-filter=CDIX-IN instance=AMC name=Peer-CDIX out-filter=CDIX-OUT \
+    remote-address=103.30.172.129 remote-as=9448
+add address-families=ipv6 in-filter=Discard instance=AMC name=\
+    Peer-AWS-IIX-V6-#2 out-filter=Discard remote-address=2001:7fa:2:5::1b6 \
+    remote-as=16509
+add in-filter=Bilateral-IN instance=AMC name=Peer-Zenlayer-IIX out-filter=\
+    Bilateral-OUT remote-address=123.108.9.167 remote-as=21859
+add address-families=ipv6 in-filter=Bilateral-IN-v6 instance=AMC name=\
+    Peer-Zenlayer-IIX-v6 out-filter=Bilateral-OUT-v6 remote-address=\
+    2001:7fa:2:5::1a7 remote-as=21859
+add in-filter=Bilateral-IN instance=AMC name=Peer-Zenlayer-JKTIX out-filter=\
+    Bilateral-OUT remote-address=119.11.184.132 remote-as=21859
+add address-families=ipv6 in-filter=Bilateral-IN-v6 instance=AMC name=\
+    Peer-Zenlayer-JKTIX-v6 out-filter=Bilateral-OUT-v6 remote-address=\
+    2404:c8:0:a:0:2:1859:1 remote-as=21859
+add disabled=yes in-filter=Bilateral-IN instance=AMC name=Peer-Cloudflare-IIX \
+    out-filter=Bilateral-OUT remote-address=123.108.9.176 remote-as=13335 \
+    remove-private-as=yes update-source=ether2-IIX
+add address-families=ipv6 disabled=yes in-filter=Bilateral-IN-v6 instance=AMC \
+    name=Peer-Cloudflare-IIX-v6 out-filter=Bilateral-OUT-v6 remote-address=\
+    2001:7fa:2:5::1b0 remote-as=13335 remove-private-as=yes update-source=\
+    ether2-IIX
+add address-families=ipv6 in-filter=KRW-v6-IN instance=AMC name=peer-KRW-v6 \
+    nexthop-choice=force-self out-filter=KRW-v6-OUT remote-address=\
+    2001:df4:db80:1410:7600::f6 remote-as=141076 update-source=Loopback
